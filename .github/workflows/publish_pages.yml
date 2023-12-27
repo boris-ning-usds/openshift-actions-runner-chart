@@ -74,7 +74,7 @@ jobs:
           echo "CHART_FILENAME=$(basename $CHART_PATH)" >> $GITHUB_ENV
 
       - name: Upload helm chart
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           path: ${{ env.CHART_PATH }}
           name: ${{ env.CHART_FILENAME }}
