@@ -2,11 +2,11 @@ apiVersion: v1
 entries:
   actions-runner:
   - apiVersion: v2
-    created: "2023-12-28T19:43:34.553674955Z"
+    created: "2023-12-28T19:43:55.29820675Z"
     description: Install GitHub Action self-hosted runners into a Kubernetes cluster.
-    digest: a2416ad25e77354003b68b36bb9b54db9d56177e2c4c4b122ef39f31d2627a9c
+    digest: c6ab491ae221a418f4e2f8bf1dcb2ff2c6ddbd208ebd9f5aea421d2d9c94a01e
     name: actions-runner
     urls:
-    - https://boris-ning-usds.github.io/openshift-actions-runner-chart/packages/actions-runner-1.0.6.tgz
-    version: 1.0.6
-generated: "2023-12-28T19:43:34.553142469Z"
+    - https://boris-ning-usds.github.io/openshift-actions-runner-chart/packages/actions-runner-1.0.7.tgz
+    version: 1.0.7
+generated: "2023-12-28T19:43:55.297679731Z"
