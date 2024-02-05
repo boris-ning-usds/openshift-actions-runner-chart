@@ -57,7 +57,7 @@ spec:
                 path: tls-ca-bundle.pem
         {{- end }}
         {{- if .Values.enablePersistantVolume }}
-        - name: runner-work
+        - name: {{ .Values.pvVolumeName}}
           persistentVolumeClaim:
             claimName: {{ .Release.Name }}-pvc
         {{- end }}
@@ -153,6 +153,6 @@ spec:
               readOnly: true
             {{- end }}
             {{- if .Values.enablePersistantVolume }}
-            - name: runner-work-dir
+            - name: {{ .Values.pvVolumeName}}
               mountPath: {{ .Values.pvVolumePath}}
             {{- end }}
