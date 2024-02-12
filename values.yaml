@@ -97,12 +97,12 @@ resources:
 clusterPKI: false
 
 enablePersistantVolume: false
-pvRequestStorage: 10Gi
-pvStorageClassName: azure-4-file
-pvAccessModes: ReadWriteMany
+pvRequestStorage: 20Gi
+pvStorageClassName: azure-managed-disk-csi-zrs # Disk file type allows files to be executed during a workflow
+pvAccessModes: ReadWriteOnce  # required for disk volumes so only pods on the same node can access it
 pvVolumeMode: Filesystem 
-pvVolumeName: "runner-work-dir" 
-pvVolumePath: "/home/runner/_work" 
+pvVolumeName: "runner-local-cache" 
+pvVolumePath: "/home/runner/.local" # github action runner cache path
 
 # You can inject arbitrary environment variables here:
 runnerEnv:
