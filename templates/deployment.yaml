@@ -26,6 +26,11 @@ spec:
         # DO NOT edit the instance label, it is used by the runner installer action to find the installed pod.
         app.kubernetes.io/instance: {{ .Release.Name }}
     spec:
+      {{- if .Values.enablePersistantVolume }}
+      strategy:
+        type: Recreate
+      {{- end }}   
+      
       serviceAccountName: {{ .Values.serviceAccountName }}
       securityContext:
         runAsNonRoot: true
