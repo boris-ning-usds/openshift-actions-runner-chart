@@ -33,8 +33,12 @@ spec:
         app.kubernetes.io/instance: {{ .Release.Name }}
     spec:
       serviceAccountName: {{ .Values.serviceAccountName }}
+      # forces the container and persistent volumes to be in the runner group and run as non-root
       securityContext:
+        seLinuxOptions:
+          level: 's0:c43,c12'
         runAsNonRoot: true
+        fsGroup: 1000
 
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
@@ -130,8 +134,6 @@ spec:
             - name: {{ .name }}
               value: {{ .value }}
         {{- end }}
-
-          securityContext:
 
           resources:
             requests:
