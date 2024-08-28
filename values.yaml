@@ -82,12 +82,16 @@ ephemeral: false
 
 serviceAccountName: default
 
+# forces the container and persistent volumes to be in the runner group and run as non-root
+securityContextOpts:
+  seLinuxOptions:
+    level: "s0:c43,c12"
+  fsGroup: 1000
+
 # Adjust requests and limits depending on your resources,
 # and how heavyweight your workloads are.
 resources:
-  limits: {
-    memory: 256Mi
-  }
+  limits: { memory: 256Mi }
   requests:
     cpu: 100m
     memory: 256Mi
@@ -99,22 +103,22 @@ clusterPKI: false
 enablePersistantVolume: false
 pvRequestStorage: 20Gi
 pvStorageClassName: azure-managed-disk-csi-zrs # Disk file type allows files to be executed during a workflow
-pvAccessModes: ReadWriteOnce  # required for disk volumes so only pods on the same node can access it
-pvVolumeMode: Filesystem 
-pvVolumeName: "runner-local-cache" 
+pvAccessModes: ReadWriteOnce # required for disk volumes so only pods on the same node can access it
+pvVolumeMode: Filesystem
+pvVolumeName: "runner-local-cache"
 pvVolumePath: "/home/runner/.local" # github action runner cache path
 
 # You can inject arbitrary environment variables here:
 runnerEnv:
-    # - name: ENV_VAR
-    #   value: env_value
-    # or, through the command line:
-    # --set runnerEnv[0].name="ENV_VAR" --set runnerEnv[0].value="env_value"
+  # - name: ENV_VAR
+  #   value: env_value
+  # or, through the command line:
+  # --set runnerEnv[0].name="ENV_VAR" --set runnerEnv[0].value="env_value"
 
-    ## Proxy Configuration Example:
-    # - name: https_proxy
-    #   value: http://proxy.example.com:9000
-    # - name: http_proxy
-    #   value: http://proxy.example.com:9000
-    # - name: no_proxy
-    #   value: localhost
+  ## Proxy Configuration Example:
+  # - name: https_proxy
+  #   value: http://proxy.example.com:9000
+  # - name: http_proxy
+  #   value: http://proxy.example.com:9000
+  # - name: no_proxy
+  #   value: localhost
