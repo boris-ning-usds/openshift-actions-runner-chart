@@ -33,8 +33,12 @@ spec:
         app.kubernetes.io/instance: {{ .Release.Name }}
     spec:
       serviceAccountName: {{ .Values.serviceAccountName }}
+      
       securityContext:
         runAsNonRoot: true
+        {{- if .Values.securityContextOpts }}
+          {{- toYaml .Values.securityContextOpts | nindent 8 }}
+        {{- end }}
 
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
@@ -130,8 +134,6 @@ spec:
             - name: {{ .name }}
               value: {{ .value }}
         {{- end }}
-
-          securityContext:
 
           resources:
             requests:
