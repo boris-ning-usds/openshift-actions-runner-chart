@@ -82,11 +82,13 @@ ephemeral: false
 
 serviceAccountName: default
 
-# forces the container and persistent volumes to be in the runner group and run as non-root
-securityContextOpts:
-  seLinuxOptions:
-    level: "s0:c43,c12"
-  fsGroup: 1000
+# Only use when you are configuring a persistent volume as it  forces the container and persistent volumes 
+# to be in the runner group and run as non-root.
+# This also requires usage of the `buildah-sa` service account during deployment
+# securityContextOpts:
+#   seLinuxOptions:
+#     level: "s0:c43,c12"
+#   fsGroup: 1000
 
 # Adjust requests and limits depending on your resources,
 # and how heavyweight your workloads are.
